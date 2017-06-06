@@ -1,19 +1,30 @@
 # -*- coding: utf-8 -*-
 
-class MongoService(object):
+from pymongo import MongoClient
 
-    def create(self):
+class MongoService (object):
+    storeName = ""
+
+    def __init__ (self, _storeName):
+        """ Connect to database. """
+        MongoService.storeName = _storeName
+        self.client = MongoClient('mongodb://localhost:27017/')
+
+    def insert (self, json_to_post):
         """ Create database with mocks from database_injector """
-        print ("creating")
+        db = self.client[MongoService.storeName]
+        post_id = db.posts.insert_one(json_to_post).inserted_id
+        print (post_id, " created!")
 
-    def insert(self):
-        """ Insert something not defined yet into the database """
-        print ("inserting")
+    def get (self, field):
+        db = self.client[MongoService.storeName]
+        name = db.posts.find_one(field)
+        print (name)
 
-    def update(self):
+    def update (self):
         """ Update something not defined yet into the database """
         print ("updating")
 
-    def delete(self):
+    def delete (self):
         """ Delete something not defined yet into the database """
         print ("deleting")
