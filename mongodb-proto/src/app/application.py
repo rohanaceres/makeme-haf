@@ -25,7 +25,10 @@ def go_for_it_girl (argv):
 
     elif argv[0] == 'delete':
         # Delete something
-        mongoService.delete('aa')
+        if len(argv) > 1:
+            r = mongoService.delete(argv[1])
+        else:
+            print ("Nothing to delete.")
 
     elif argv[0] == 'read':
         if len(argv) > 1:

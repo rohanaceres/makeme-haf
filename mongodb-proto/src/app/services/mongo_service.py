@@ -20,18 +20,22 @@ class MongoService (object):
         else:
             raise Exception("Nothing to save.")
     
+    """ Read one document if specified, and all of them if none specified """
     def read (self, store_id):
         if store_id is None:
             return self.client[self.storeName].db.posts.find({})
         else:
             object_id = ObjectId(store_id)
-            print (object_id)
             return self.client[self.storeName].db.posts.find({'_id':object_id})
 
+    """ Update something not defined yet into the database """
     def update (self):
-        """ Update something not defined yet into the database """
         print ("updating")
 
-    def delete (self, id):
-        """ Delete something not defined yet into the database """
-        print ("deleting")
+    """ Delete something not defined yet into the database """
+    def delete (self, old_store_id):
+        if old_store_id is not None:
+            old_store = self.read(old_store_id)
+            if (old_store[0] is not None):
+                print (old_store[0])
+                self.client[self.storeName].db.posts.remove(old_store[0])
