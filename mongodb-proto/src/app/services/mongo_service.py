@@ -1,25 +1,32 @@
 # -*- coding: utf-8 -*-
 
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 class MongoService (object):
-    storeName = ""
+    storeName = ''
 
+    """ Connect to database. """
     def __init__ (self, _storeName):
-        """ Connect to database. """
         MongoService.storeName = _storeName
         self.client = MongoClient('mongodb://localhost:27017/')
 
-    def insert (self, json_to_post):
-        """ Create database with mocks from database_injector """
-        db = self.client[MongoService.storeName]
-        post_id = db.posts.insert_one(json_to_post).inserted_id
-        print (post_id, " created!")
-
-    def get (self, field):
-        db = self.client[MongoService.storeName]
-        name = db.posts.find_one(field)
-        return name
+    """ Create a document inside a specific store database """
+    def create (self, new_store):
+        if new_store is not None:
+            print (self.client[self.storeName])
+            post_id = self.client[self.storeName].db.posts.insert_one(new_store.get_as_json())
+            print (post_id, " created!")
+        else:
+            raise Exception("Nothing to save.")
+    
+    def read (self, store_id):
+        if store_id is None:
+            return self.client[self.storeName].db.posts.find({})
+        else:
+            object_id = ObjectId(store_id)
+            print (object_id)
+            return self.client[self.storeName].db.posts.find({'_id':object_id})
 
     def update (self):
         """ Update something not defined yet into the database """
