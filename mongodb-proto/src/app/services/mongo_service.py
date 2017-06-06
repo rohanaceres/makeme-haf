@@ -19,12 +19,12 @@ class MongoService (object):
     def get (self, field):
         db = self.client[MongoService.storeName]
         name = db.posts.find_one(field)
-        print (name)
+        return name
 
     def update (self):
         """ Update something not defined yet into the database """
         print ("updating")
 
-    def delete (self):
+    def delete (self, id):
         """ Delete something not defined yet into the database """
         print ("deleting")
