@@ -3,18 +3,18 @@
 from app.model.amazon import Amazon
 from app.model.bestbuy import BestBuy
 
-def mockAmazon():
+def mock_amazon():
     # Mock model class:
     amazon = Amazon()
     amazon.carrot1 = 'cenoura normal'
     amazon.carrot2 = 'cenoura radioativa'
-    amazon.carrotNumber = 575
+    amazon.carrot_number = 575
     return amazon
 
-def mockBestBuy():
+def mock_bestbuy():
     # Mock model classes
     bestbuy = BestBuy()
     bestbuy.potato1 = 'batata baroa'
     bestbuy.potato2 = 'batata inglesa'
-    bestbuy.potatoNumber = 666
+    bestbuy.potato_number = 666
     return bestbuy

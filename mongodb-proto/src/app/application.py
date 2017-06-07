@@ -3,21 +3,21 @@
 import sys
 import json
 from app.services import mongo_service
-from app.mocking.database_mocker import mockAmazon, mockBestBuy
+from app.mocking.database_mocker import mock_amazon, mock_bestbuy
 
 appconfig = 'appconfig.json'
 
 def go_for_it_girl (argv):
-    mongoService = mongo_service.MongoService(get_store_name())
+    mongo = mongo_service.MongoService(get_store_name())
 
     if argv[0] == 'create':
         if len(argv) > 1:
             if argv[1].lower() == 'amazon':
                 # Insert mocked model into the database
-                mongoService.create(mockAmazon())
+                mongo.create(mock_amazon())
             elif argv[1].lower() == 'bestbuy':
                 # Insert mocked model into the database
-                mongoService.create(mockBestBuy())
+                mongo.create(mock_bestbuy())
 
     elif argv[0] == 'update':
         # Update data
@@ -26,15 +26,15 @@ def go_for_it_girl (argv):
     elif argv[0] == 'delete':
         # Delete something
         if len(argv) > 1:
-            r = mongoService.delete(argv[1])
+            r = mongo.delete(argv[1])
         else:
             print ("Nothing to delete.")
 
     elif argv[0] == 'read':
         if len(argv) > 1:
-            r = mongoService.read(argv[1])
+            r = mongo.read(argv[1])
         else:
-            r = mongoService.read(None)
+            r = mongo.read(None)
         for curr in r:
             print (curr)
 
