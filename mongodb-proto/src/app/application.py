@@ -3,7 +3,6 @@
 import sys
 import json
 from app.services.mongo_service import MongoService
-from datetime import datetime
 from app.mocking.database_mocker import mockAmazon, mockBestBuy
 
 appconfig = 'appconfig.json'
