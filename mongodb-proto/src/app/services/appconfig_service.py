@@ -1,7 +1,11 @@
 """
++ os: operating system stuff
 + json: responsible for manipulating JSON.
++ current: responsible for getting paths and relative paths of modules.
 """
+import os
 import json
+import current
 
 """
 Name of the configuration file.
@@ -16,10 +20,13 @@ class AppConfigService(object):
         """
         Updates the store name.
         """
-        with open(APPCONFIG_NAME, 'r') as config_file_to_read:
+        here = os.path.join(current.caller_path(steps=2), 'configs', 'appconfig.json')
+        print(here)
+
+        with open(here, 'r') as config_file_to_read:
             config = json.load(config_file_to_read)
             config['storeName'] = new_store_name
-            with open(APPCONFIG_NAME, 'w') as config_file_to_write:
+            with open(here, 'w') as config_file_to_write:
                 json.dump(config, config_file_to_write)
     def get_store_name(self):
         """
