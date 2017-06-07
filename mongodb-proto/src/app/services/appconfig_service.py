@@ -20,7 +20,7 @@ class AppConfigService(object):
         """
         Updates the store name.
         """
-        here = os.path.join(current.caller_path(steps=2), 'configs', 'appconfig.json')
+        here = os.path.join(current.caller_path(steps=2), 'configs', APPCONFIG_NAME)
         print(here)
 
         with open(here, 'r') as config_file_to_read:
@@ -32,7 +32,7 @@ class AppConfigService(object):
         """
         Get the current store name in the appconfig.
         """
-        with open(APPCONFIG_NAME, 'r') as config_file_to_read:
+        with open(here, 'r') as config_file_to_read:
             config = json.load(config_file_to_read)
             if len(config) > 1:
                 return config['storeName']
@@ -42,7 +42,7 @@ class AppConfigService(object):
         """
         Get the database connection string from the configuration file.
         """
-        with open(APPCONFIG_NAME, 'r') as config_file_to_read:
+        with open(here, 'r') as config_file_to_read:
             config = json.load(config_file_to_read)
             if len(config) > 1:
                 return config['connectionString']
