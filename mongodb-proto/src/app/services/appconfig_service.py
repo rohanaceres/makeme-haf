@@ -11,6 +11,8 @@ import current
 Name of the configuration file.
 """
 APPCONFIG_NAME = 'appconfig.json'
+READING_MODE = 'r'
+WRITING_MODE = 'w'
 
 class AppConfigService(object):
     """
@@ -21,17 +23,17 @@ class AppConfigService(object):
         Updates the store name.
         """
         here = os.path.join(current.caller_path(steps=2), 'configs', APPCONFIG_NAME)
-        with open(here, 'r') as config_file_to_read:
+        with open(here, READING_MODE) as config_file_to_read:
             config = json.load(config_file_to_read)
             config['storeName'] = new_store_name
-            with open(here, 'w') as config_file_to_write:
+            with open(here, WRITING_MODE) as config_file_to_write:
                 json.dump(config, config_file_to_write)
     def get_store_name(self):
         """
         Get the current store name in the appconfig.
         """
         here = os.path.join(current.caller_path(steps=2), 'configs', APPCONFIG_NAME)
-        with open(here, 'r') as config_file_to_read:
+        with open(here, READING_MODE) as config_file_to_read:
             config = json.load(config_file_to_read)
             if len(config) > 1:
                 return config['storeName']
@@ -42,7 +44,7 @@ class AppConfigService(object):
         Get the database connection string from the configuration file.
         """
         here = os.path.join(current.caller_path(steps=2), 'configs', APPCONFIG_NAME)
-        with open(here, 'r') as config_file_to_read:
+        with open(here, READING_MODE) as config_file_to_read:
             config = json.load(config_file_to_read)
             if len(config) > 1:
                 return config['connectionString']
