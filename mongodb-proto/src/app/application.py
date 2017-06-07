@@ -2,13 +2,13 @@
 
 import sys
 import json
-from app.services.mongo_service import MongoService
+from app.services import mongo_service
 from app.mocking.database_mocker import mockAmazon, mockBestBuy
 
 appconfig = 'appconfig.json'
 
 def go_for_it_girl (argv):
-    mongoService = MongoService(get_store_name())
+    mongoService = mongo_service.MongoService(get_store_name())
 
     if argv[0] == 'create':
         if len(argv) > 1:
