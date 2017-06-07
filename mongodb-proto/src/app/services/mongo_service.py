@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """
 PyMongo: database used.
 ObjectId: responsible for generate new IDs (PK) for an object.

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """ System module. """
 import sys
 from app.application import go_for_it_girl
