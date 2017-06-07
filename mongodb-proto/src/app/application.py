@@ -11,12 +11,13 @@ def go_for_it_girl (argv):
     mongoService = MongoService(get_store_name())
 
     if argv[0] == 'create':
-        if argv[1].lower() == 'amazon':
-            # Insert mocked model into the database
-            mongoService.create(mockAmazon())
-        elif argv[1].lower() == 'bestbuy':
-            # Insert mocked model into the database
-            mongoService.create(mockBestBuy())
+        if len(argv) > 1:
+            if argv[1].lower() == 'amazon':
+                # Insert mocked model into the database
+                mongoService.create(mockAmazon())
+            elif argv[1].lower() == 'bestbuy':
+                # Insert mocked model into the database
+                mongoService.create(mockBestBuy())
 
     elif argv[0] == 'update':
         # Update data
