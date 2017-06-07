@@ -1,1 +1,1 @@
-{"storeName": "amazon"}
+{"storeName": "amazon", "connectionString":"mongodb://localhost:27017/"}

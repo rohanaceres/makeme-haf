@@ -9,12 +9,12 @@ class MongoService(object):
     """
     Responsible for the mongo database access.
     """
-    def __init__(self, _store_name):
+    def __init__(self, _store_name, connection_string):
         """
         Connect to database.
         """
         self.store_name = _store_name
-        self.client = MongoClient('mongodb://localhost:27017/')
+        self.client = MongoClient(connection_string)
 
     def create(self, new_store):
         """
